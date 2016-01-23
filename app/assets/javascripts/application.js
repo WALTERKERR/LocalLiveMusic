@@ -14,3 +14,15 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  // makePurple();
+});
+
+function makePurple(){
+  $(document).on("click", "h1", function(event){
+    event.preventDefault();
+    $(this).css("background-color", "purple")
+  })
+}
+
