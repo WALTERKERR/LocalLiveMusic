@@ -5,9 +5,21 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.js'></script>
+  <link href='https://api.mapbox.com/mapbox.js/v2.2.4/mapbox.css' rel='stylesheet' />
+  <style>
+  body { margin: 0; padding: 0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+
 </head>
 <body>
   Hello!
+
+<div id='map'>
+</div>
+
 
 <%= yield %>
 
