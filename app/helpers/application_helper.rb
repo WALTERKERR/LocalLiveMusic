@@ -24,13 +24,14 @@ module ApplicationHelper
 
   def scrape_from_event(link)
     base_url = "http://www.sfweekly.com#{link}"
+    # base_url = "/Users/apprentice/Desktop/ShowsNearMe/public/event_template.html"
     webpage_to_parse = Nokogiri::HTML(open(base_url, 'User-Agent' => 'firefox'))
-    p venue_name = webpage_to_parse.at_css('.org').text
-    p locality = webpage_to_parse.at_css('.locality').text
-    p address = webpage_to_parse.at_css('.street-address').text.strip + ", " + locality + " CA"
+    venue_name = webpage_to_parse.at_css('.org').text
+    locality = webpage_to_parse.at_css('.locality').text
+    address = webpage_to_parse.at_css('.street-address').text.strip + ", " + locality + " CA"
     venue_desc = webpage_to_parse.at_css('#LocationDescription').text.strip if webpage_to_parse.at_css('#LocationDescription')
-    p event_name = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('a').text
-    p event_date = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('ul').text.strip
+    p event_name = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('h4').text.delete("\n").delete("\r").strip
+    event_date = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('ul').text.strip
     if event_date.match(/\./)
       chomped_event = event_date.split(' ')[1].gsub(".","")+event_date.split(' ')[2].chop
     end
@@ -54,8 +55,10 @@ module ApplicationHelper
       # unless link == nil
       scrape_from_event(link)
     # end
+    end
   end
-end
+
+# scrape_from_event
 
   # iterate_through_links_to_generate_content
   # p iterate_to_generate_array_of_event_links
