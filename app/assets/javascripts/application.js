@@ -18,7 +18,7 @@
 $(document).ready(function(){
   // makePurple();
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  var map = L.mapbox.map('map', 'mapbox.streets')
+  map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
   // L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
   // var map = L.mapbox.map('map', 'Your map layer', { zoomControl: false })
@@ -27,6 +27,7 @@ $(document).ready(function(){
   //   getEvents(map);
   // });
   showMap();
+  map.invalidateSize()
 });
 
 function makePurple(){
@@ -40,6 +41,9 @@ function showMap(){
   $(document).on("click", "#show-map", function(event){
     event.preventDefault();
     $(".intro").fadeOut();
+    map.invalidateSize()
     $("#map").fadeIn();
+    map.invalidateSize()
+    // $("#map").invalidateSize();
   })
 }
