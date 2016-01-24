@@ -6,6 +6,7 @@ class EventsController < ApplicationController
     @geojson = Array.new
     #calls the below method that calls all event objects and an empty array
     build_geojson(@events, @geojson)
+    gon.events = Event.all
   end
 
   respond_to do |format|
@@ -15,7 +16,7 @@ class EventsController < ApplicationController
 
   def build_geojson(events, geojson)
     events.each do |event|
-      geojson << GeojsonBuilder.build_event(event)
+      GeojsonBuilder.build_event(event, geojson)
     end
   end
 
