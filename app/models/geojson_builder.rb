@@ -1,18 +1,18 @@
 class GeojsonBuilder < ActiveRecord::Base
   # app/models/geojson_builder.rb
-  def build_event(event, geojson)
+  def self.build_event(event, geojson)
     geojson << {
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [event.longitude, event.latitude] # this part is tricky
+        coordinates: [event.longitude, event.latitude]
       },
       properties: {
         event_name: event.event_name,
         address: event.address,
         :"marker-color" => "#FFFFFF",
         :"marker-symbol" => "circle",
-        :"marker-size" => "medium",
+        :"marker-size" => "large",
       }
     }
   end

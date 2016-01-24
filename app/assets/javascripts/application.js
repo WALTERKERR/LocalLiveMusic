@@ -16,17 +16,20 @@
 //= require_tree .
 
 $(document).ready(function(){
-  // makePurple();
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
   var map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
-  // L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  // var map = L.mapbox.map('map', 'Your map layer', { zoomControl: false })
-  // .setView([39.739, -104.990], 12);
-  // map.featureLayer.on("ready", function(e) {
-  //   getEvents(map);
-  // });
+  console.log(gon.events);
+  L.marker([37.783, -122.4167], {
+    icon: L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'post',
+        'marker-color': '#fa0'
+    }),
+}).bindPopup('<p>hello</p>').addTo(map);
 });
+
+
 
 function makePurple(){
   $(document).on("click", "h1", function(event){
@@ -34,4 +37,6 @@ function makePurple(){
     $(this).css("background-color", "purple")
   })
 }
+
+
 
