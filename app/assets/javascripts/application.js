@@ -30,9 +30,30 @@ $(document).ready(function(){
 }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + event.venue_desc + '</span>' + '</i>' + '</p>'
       ).addTo(map);
     });
+    map.locate();
+    map.on('locationfound', function(e) {
+    map.fitBounds(e.bounds);
+
+    L.mapbox.featureLayer().addTo(map).setGeoJSON({
+        type: 'Feature',
+        geometry: {
+            type: 'Point',
+            coordinates: [e.latlng.lng, e.latlng.lat]
+        },
+        properties: {
+            'title': 'Here I am!',
+            'marker-color': '#ffff00',
+            'marker-symbol': 'star',
+            'marker-size': 'large'
+        }
+    });
+
+});
+
   showMap();
   map.invalidateSize()
 });
+
 
 
 
