@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def find_content_to_parse
     # base_url = "http://www.sfweekly.com/sanfrancisco/EventSearch?eventSection=2205482"
-    base_url = "/Users/apprentice/Desktop/ShowsNearMe/public/link_template.html"
+    base_url = "http://www.sfweekly.com/sanfrancisco/EventSearch?eventSection=2205482"
     data_to_parse = Nokogiri::HTML(open(base_url))
     data_to_parse.at("thead").search("a")
   end
