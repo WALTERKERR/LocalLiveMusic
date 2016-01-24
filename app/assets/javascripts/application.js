@@ -17,7 +17,7 @@
 
 $(document).ready(function(){
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  var map = L.mapbox.map('map', 'mapbox.streets')
+  map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
     gon.events.forEach ( function (event)
     {
@@ -30,6 +30,8 @@ $(document).ready(function(){
 }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + event.venue_desc + '</span>' + '</i>' + '</p>'
       ).addTo(map);
     });
+  showMap();
+  map.invalidateSize()
 });
 
 
@@ -41,5 +43,13 @@ function makePurple(){
   })
 }
 
-
-
+function showMap(){
+  $(document).on("click", "#show-map", function(event){
+    event.preventDefault();
+    $(".intro").fadeOut();
+    map.invalidateSize()
+    $("#map").fadeIn();
+    map.invalidateSize()
+    // $("#map").invalidateSize();
+  })
+}
