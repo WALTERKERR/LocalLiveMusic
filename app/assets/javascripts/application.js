@@ -19,19 +19,16 @@ $(document).ready(function(){
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
   var map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
-    console.log(gon.events)
-    var test = gon.events[0];
-    var test1 = gon.events[1];
-
     gon.events.forEach ( function (event)
     {
       L.marker([event.latitude, event.longitude], {
       icon: L.mapbox.marker.icon({
         'marker-size': 'large',
-        'marker-symbol': 'post',
-        'marker-color': '#fa0'
+        'marker-symbol': 'music',
+        'marker-color': '#f00'
     }),
-}).bindPopup('<p>'+ event.event_name + '</p>').addTo(map);
+}).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + event.venue_desc + '</span>' + '</i>' + '</p>'
+      ).addTo(map);
     });
 });
 

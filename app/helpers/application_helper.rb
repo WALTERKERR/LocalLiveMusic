@@ -41,7 +41,7 @@ module ApplicationHelper
     if today_date == chomped_event
       Event.create(event_name: event_name, venue_name: venue_name, address: address, venue_desc: venue_desc, event_time: chomped_time)
     else
-      Event.create(event_name: "Recurring Show", venue_name: venue_name, address: address, venue_desc: venue_desc, event_time: chomped_time)
+      Event.create(event_name: "Live Music", venue_name: venue_name, address: address, venue_desc: venue_desc, event_time: chomped_time)
     end
   end
 

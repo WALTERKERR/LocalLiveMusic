@@ -10,7 +10,7 @@ class GeojsonBuilder < ActiveRecord::Base
       properties: {
         event_name: event.event_name,
         address: event.address,
-        :"marker-color" => "#FFFFFF",
+        :"marker-color" => "  #FF0000",
         :"marker-symbol" => "circle",
         :"marker-size" => "large",
       }
