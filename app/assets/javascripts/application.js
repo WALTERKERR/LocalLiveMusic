@@ -26,6 +26,7 @@ $(document).ready(function(){
   // map.featureLayer.on("ready", function(e) {
   //   getEvents(map);
   // });
+  showMap();
 });
 
 function makePurple(){
@@ -35,3 +36,10 @@ function makePurple(){
   })
 }
 
+function showMap(){
+  $(document).on("click", "#show-map", function(event){
+    event.preventDefault();
+    $(".intro").fadeOut();
+    $("#map").fadeIn();
+  })
+}
