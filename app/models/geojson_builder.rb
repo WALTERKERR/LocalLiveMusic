@@ -17,7 +17,4 @@ class GeojsonBuilder < ActiveRecord::Base
     }
   end
 end
-      # t.string :event_name
-      # t.string :address
-      # t.string :venue_name
-      # t.datetime :event_time
+
