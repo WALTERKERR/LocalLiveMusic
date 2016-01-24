@@ -19,4 +19,5 @@ class EventsController < ApplicationController
       GeojsonBuilder.build_event(event, geojson)
     end
   end
+
 end
