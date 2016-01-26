@@ -61,6 +61,14 @@ a:focus {
     font-weight: 400;
 }
 
+.navbar {
+    padding: 0;
+}
+
+.navbar:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+
 .navbar-custom {
     margin-bottom: 0;
     border-bottom: 1px solid rgba(255,255,255,.3);
@@ -124,7 +132,7 @@ a:focus {
 
 @media(min-width:768px) {
     .navbar-custom {
-        padding: 20px 0;
+        /*padding: 20px 0;*/
         border-bottom: 0;
         letter-spacing: 1px;
         background: 0 0;
