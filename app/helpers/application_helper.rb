@@ -31,13 +31,14 @@ module ApplicationHelper
     address = webpage_to_parse.at_css('.street-address').text.strip + ", " + locality + " CA"
     venue_desc = webpage_to_parse.at_css('#LocationDescription').text.strip if webpage_to_parse.at_css('#LocationDescription')
     p event_name = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('h4').text.delete("\n").delete("\r").strip
-    event_date = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('ul').text.strip
+    p event_date = webpage_to_parse.at_css('#UpcomingEvents').at_css('.eventItem').at('ul').text.strip
     if event_date.match(/\./)
       chomped_event = event_date.split(' ')[1].gsub(".","")+event_date.split(' ')[2].chop
+      chomped_event = event_date
     end
-      p today_date = Date.today.strftime("%b%e")
-      # p chomped_time = event_date.split(' ')[3]+ " " + event_date.split(' ')[4]
-      chomped_time = "8pm"
+    p today_date = Date.today.strftime("%b%e")
+    chomped_time = grabTime(event_date)
+    # chomped_time = "8pm"
     if today_date == chomped_event
       Event.create(event_name: event_name, venue_name: venue_name, address: address, venue_desc: venue_desc, event_time: chomped_time)
     else
@@ -52,8 +53,10 @@ module ApplicationHelper
   def iterate_through_links_to_generate_content
     iterate_to_generate_array_of_event_links.each do |link|
       p link
+      unless link.empty?
       # unless link == nil
-      scrape_from_event(link)
+        scrape_from_event(link)
+      end
     # end
     end
   end
@@ -63,5 +66,12 @@ module ApplicationHelper
   # iterate_through_links_to_generate_content
   # p iterate_to_generate_array_of_event_links
 
+  def grabTime(str)
+    if /(\,\s)(\d.+\.\m\.)/.match(str)
+      /(\,\s)(\d.+\.\m\.)/.match(str)[2]
+    else
+      "Ongoing"
+    end
+  end
 
 end
