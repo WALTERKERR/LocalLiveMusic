@@ -31,7 +31,8 @@ $(document).ready(function(){
   });
   map.locate();
   map.on('locationfound', function(e) {
-  map.fitBounds(e.bounds);
+  // Commented so we don't zoom in on current location
+  // map.fitBounds(e.bounds);
 
   L.mapbox.featureLayer().addTo(map).setGeoJSON({
       type: 'Feature',
