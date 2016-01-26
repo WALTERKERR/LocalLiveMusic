@@ -26,7 +26,7 @@ $(document).ready(function(){
         'marker-symbol': 'music',
         'marker-color': '#f00'
       }),
-    }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + event.venue_desc + '</span>' + '</i>' + '</p>',
+    }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + ifNull(event.venue_desc) + '</span>' + '</i>' + '</p>',
     {autoPanPadding: new L.Point(0, 50)}).addTo(map);
   });
   map.locate();
@@ -41,7 +41,7 @@ $(document).ready(function(){
           coordinates: [e.latlng.lng, e.latlng.lat]
       },
       properties: {
-          'title': 'Here I am!',
+          'title': 'You are here!',
           'marker-color': '#ffff00',
           'marker-symbol': 'star',
           'marker-size': 'large'
@@ -63,4 +63,12 @@ function showMap(){
     map.invalidateSize()
     // $("#map").invalidateSize();
   })
+}
+
+function ifNull(val){
+  if (!val) {
+    return ""
+  } else {
+    return val
+  }
 }
