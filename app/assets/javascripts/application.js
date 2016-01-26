@@ -19,50 +19,40 @@ $(document).ready(function(){
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
   map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
-    gon.events.forEach ( function (event)
-    {
-      L.marker([event.latitude, event.longitude], {
+  gon.events.forEach ( function (event) {
+    L.marker([event.latitude, event.longitude], {
       icon: L.mapbox.marker.icon({
         'marker-size': 'large',
         'marker-symbol': 'music',
         'marker-color': '#f00'
-    }),
-}).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + event.venue_desc + '</span>' + '</i>' + '</p>'
-      ).addTo(map);
-    });
-    map.locate();
-    map.on('locationfound', function(e) {
-    map.fitBounds(e.bounds);
+      }),
+    }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + ifNull(event.venue_desc) + '</span>' + '</i>' + '</p>',
+    {autoPanPadding: new L.Point(0, 50)}).addTo(map);
+  });
+  map.locate();
+  map.on('locationfound', function(e) {
+  // Commented so we don't zoom in on current location
+  // map.fitBounds(e.bounds);
 
-    L.mapbox.featureLayer().addTo(map).setGeoJSON({
-        type: 'Feature',
-        geometry: {
-            type: 'Point',
-            coordinates: [e.latlng.lng, e.latlng.lat]
-        },
-        properties: {
-            'title': 'Here I am!',
-            'marker-color': '#ffff00',
-            'marker-symbol': 'star',
-            'marker-size': 'large'
-        }
-    });
+  L.mapbox.featureLayer().addTo(map).setGeoJSON({
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [e.latlng.lng, e.latlng.lat]
+      },
+      properties: {
+          'title': 'You are here!',
+          'marker-color': '#ffff00',
+          'marker-symbol': 'star',
+          'marker-size': 'large'
+      }
+  });
 
 });
 
   showMap();
   map.invalidateSize()
 });
-
-
-
-
-function makePurple(){
-  $(document).on("click", "h1", function(event){
-    event.preventDefault();
-    $(this).css("background-color", "purple")
-  })
-}
 
 function showMap(){
   $(document).on("click", "#show-map", function(event){
@@ -73,4 +63,12 @@ function showMap(){
     map.invalidateSize()
     // $("#map").invalidateSize();
   })
+}
+
+function ifNull(val){
+  if (!val) {
+    return ""
+  } else {
+    return val
+  }
 }
