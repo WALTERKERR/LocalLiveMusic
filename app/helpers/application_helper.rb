@@ -4,7 +4,6 @@ require 'open-uri'
 module ApplicationHelper
 
   def find_content_to_parse
-    # base_url = "http://www.sfweekly.com/sanfrancisco/EventSearch?eventSection=2205482"
     base_url = "http://www.sfweekly.com/sanfrancisco/EventSearch?eventSection=2205482"
     data_to_parse = Nokogiri::HTML(open(base_url))
     data_to_parse.at("thead").search("a")
@@ -24,7 +23,6 @@ module ApplicationHelper
 
   def scrape_from_event(link)
     base_url = "http://www.sfweekly.com#{link}"
-    # base_url = "/Users/apprentice/Desktop/ShowsNearMe/public/event_template.html"
     webpage_to_parse = Nokogiri::HTML(open(base_url, 'User-Agent' => 'firefox'))
     venue_name = webpage_to_parse.at_css('.org').text
     locality = webpage_to_parse.at_css('.locality').text
