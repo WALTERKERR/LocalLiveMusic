@@ -16,22 +16,59 @@
 //= require_tree .
 
 $(document).ready(function(){
-  // makePurple();
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  var map = L.mapbox.map('map', 'mapbox.streets')
+  map = L.mapbox.map('map', 'mapbox.streets')
     .setView([37.783, -122.4167], 13);
-  // L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  // var map = L.mapbox.map('map', 'Your map layer', { zoomControl: false })
-  // .setView([39.739, -104.990], 12);
-  // map.featureLayer.on("ready", function(e) {
-  //   getEvents(map);
-  // });
+  gon.events.forEach ( function (event) {
+    L.marker([event.latitude, event.longitude], {
+      icon: L.mapbox.marker.icon({
+        'marker-size': 'large',
+        'marker-symbol': 'music',
+        'marker-color': '#f00'
+      }),
+    }).bindPopup('<p>'+ event.event_name + '<br>' + '<b>' + event.venue_name + '</b>' + '<br>' + event.address + '<br>'+ 'Time: ' + event.event_time + '<br>' + '<i>' + '<span style="font-size: .8em;">' + ifNull(event.venue_desc) + '</span>' + '</i>' + '</p>',
+    {autoPanPadding: new L.Point(0, 50)}).addTo(map);
+  });
+  map.locate();
+  map.on('locationfound', function(e) {
+  // Commented so we don't zoom in on current location
+  // map.fitBounds(e.bounds);
+
+  L.mapbox.featureLayer().addTo(map).setGeoJSON({
+      type: 'Feature',
+      geometry: {
+          type: 'Point',
+          coordinates: [e.latlng.lng, e.latlng.lat]
+      },
+      properties: {
+          'title': 'You are here!',
+          'marker-color': '#ffff00',
+          'marker-symbol': 'star',
+          'marker-size': 'large'
+      }
+  });
+
 });
 
-function makePurple(){
-  $(document).on("click", "h1", function(event){
+  showMap();
+  map.invalidateSize()
+});
+
+function showMap(){
+  $(document).on("click", "#show-map", function(event){
     event.preventDefault();
-    $(this).css("background-color", "purple")
+    $(".intro").fadeOut();
+    map.invalidateSize()
+    $("#map").fadeIn();
+    map.invalidateSize()
+    // $("#map").invalidateSize();
   })
 }
 
+function ifNull(val){
+  if (!val) {
+    return ""
+  } else {
+    return val
+  }
+}
