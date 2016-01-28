@@ -17,8 +17,11 @@
 
 $(document).ready(function(){
   L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
-  map = L.mapbox.map('map', 'mapbox.streets')
+  map = L.mapbox.map('map', 'mapbox.streets', {zoomControl: false })
     .setView([37.783, -122.4167], 13);
+
+  new L.Control.Zoom({ position: 'bottomright' }).addTo(map);
+
   gon.events.forEach ( function (event) {
     L.marker([event.latitude, event.longitude], {
       icon: L.mapbox.marker.icon({
