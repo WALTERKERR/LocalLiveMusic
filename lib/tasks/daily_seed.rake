@@ -10,4 +10,11 @@ namespace :daily_seed do
     iterate_through_links_to_generate_content
   end
 
+  desc "Delete all events and seed with new daily data"
+  task reset: :environment do
+    include ApplicationHelper
+    Event.all.each { |event| event.delete }
+    iterate_through_links_to_generate_content
+  end
+
 end
