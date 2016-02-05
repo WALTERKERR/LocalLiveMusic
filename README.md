@@ -29,8 +29,8 @@ This app was created for the January 2015 Dev Bootcamp Hackathon to help people 
 
 ##To run locally via the command line:
 
-1. git clone https://github.com/jonwhuang/ShowsNearMe.git
-2. cd ShowsNearMe
+1. git clone https://github.com/WALTERKERR/LocalLiveMusic.git
+2. cd LocalLiveMusic
 3. bundle install
 4. rake db:create
 5. rake db:migrate
@@ -38,7 +38,7 @@ This app was created for the January 2015 Dev Bootcamp Hackathon to help people 
 7. rails server
 8. http://localhost:3000/
 
-### Deployed @ https://vast-fjord-17407.herokuapp.com/
+### Deployed @ http://locallivemusic.herokuapp.com/
 
 
 
