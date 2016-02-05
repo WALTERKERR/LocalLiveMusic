@@ -25,6 +25,7 @@ This app was created for the January 2015 Dev Bootcamp Hackathon to help people 
 * Jonathan Huang
 * Mark Janzer
 * Jane Chester
+* Steven Jing
 
 ##To run locally via the command line:
 
