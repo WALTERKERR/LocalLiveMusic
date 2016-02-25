@@ -16,7 +16,7 @@
 //= require_tree .
 
 $(document).ready(function(){
-  L.mapbox.accessToken = 'pk.eyJ1Ijoia2FybGFraW5nMiIsImEiOiJjaWV1d29pZ2QwczhwczltMm1lbWMxZnJmIn0._CLLgaefzXvhtCeSs61tzQ';
+  L.mapbox.accessToken = 'pk.eyJ1IjoibWphbnplciIsImEiOiJjaWwxanU1ejQwbW5hdTdseGp5ZnJ5b3ZmIn0.WKjnH0Y82-pkomYaPS2i8w';
   map = L.mapbox.map('map', 'mapbox.streets', {zoomControl: false })
     .setView([37.783, -122.4167], 13);
 
